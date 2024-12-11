@@ -1,11 +1,3 @@
-<?php
-
-namespace Database\Seeders;
-
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
-use App\Models\Option;
-use App\Models\Property;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -20,11 +12,10 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'omd34',
             'email' => 'danielotomo34@gmail.com',
             'password' => Hash::make('007665123')
         ]);
-        $options = Option::factory(12)->create();
-        Property::factory(50)->hasAttached($options->random(3))->create();
+       // $options = Option::factory(12)->create();
+       // Property::factory(50)->hasAttached($options->random(3))->create();
     }
 }
