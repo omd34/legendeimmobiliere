@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/legendeimmobiliere', [HomeController::class, 'index'])->name('index');
+Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::prefix('/legendeimmobiliere/biens')->controller(ControllersPropertyController::class)->name('property.')->group(function () {
     $idRegex = '[0-9]+';
     $slugRegex = '[0-9a-z\-]+';
@@ -38,7 +38,7 @@ Route::post('/legendeimmobiliere/admin/login', [AuthController::class, 'authenti
 Route::delete('/legendeimmobiliere/admin/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::prefix('/legendeimmobiliere/admin')->name('admin.')->middleware('auth')->group(function () {
-    Route::get('/legendeimmobiliere/', [AdminHomeController::class, 'index'])->name('index');
+    Route::get('/', [AdminHomeController::class, 'index'])->name('index');
     Route::resource('legendeimmobiliere/property', PropertyController::class)->except('show');
     Route::resource('legendeimmobiliere/option', OptionController::class)->except('show');
 });
