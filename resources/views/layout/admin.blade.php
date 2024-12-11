@@ -34,72 +34,131 @@
     $routeName = request()->route();
 @endphp
 <header id="header" class="header d-flex align-items-center fixed-top">
-  <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-    <a href="{{ route('admin.index') }}" class="logo d-flex align-items-center">
-      <h1 class="sitename">Agence<span>Immobilière</span></h1>
-    </a>
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-    <nav id="navmenu" class="navmenu">
-      <ul>
-        <li><a @class(['nav-link', 'active' => $routeName->getName() === 'admin.index']) href="{{ route('admin.index') }}">Accueil</a></li>
-        <li><a @class(['nav-link', 'active' => $routeName->getName() === 'admin.property.index']) href="{{ route('admin.property.index') }}">Les biens</a></li>
-        <li><a @class(['nav-link', 'active' => $routeName->getName() === 'admin.option.index']) href="{{ route('admin.option.index') }}">Les options</a></li>
-        <li class="dropdown">
-          <a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-          <ul>
-            <li><a href="#">Dropdown 1</a></li>
-            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="#">Deep Dropdown 1</a></li>
-                <li><a href="#">Deep Dropdown 2</a></li>
-                <li><a href="#">Deep Dropdown 3</a></li>
-                <li><a href="#">Deep Dropdown 4</a></li>
-                <li><a href="#">Deep Dropdown 5</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Dropdown 2</a></li>
-            <li><a href="#">Dropdown 3</a></li>
-            <li><a href="#">Dropdown 4</a></li>
-          </ul>
-        </li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-    </nav>
+      <a href="{{ route('index') }}" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">Legende<span>Immobiliere</span></h1>
+      </a>
+      <style>
+                a.logo {
+          text-decoration: none;
+        }
+      </style>  
 
-    <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
-          {{ Illuminate\Support\Facades\Auth::user()->name }}
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <form action="{{ route('logout') }}" method="post">
-            @method("delete")
-            @csrf
-            <button class="nav-link" type="submit">Se déconnecter</button>
-          </form>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a @class(['nav-link', 'active' => $routeName->getName() === 'admin.index']) href="{{ route('admin.index') }}">Accueil</a></li>
+          <li><a @class(['nav-link', 'active' => $routeName->getName() === 'admin.property.index']) href="{{ route('admin.property.index') }}">Les biens</a></li>
+          <li><a @class(['nav-link', 'active' => $routeName->getName() === 'admin.option.index']) href="{{ route('admin.option.index') }}">Les options</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+              {{ Illuminate\Support\Facades\Auth::user()->name }}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <form action="{{ route('logout') }}" method="post">
+                @method("delete")
+                @csrf
+                <button class="nav-link" type="submit">Se déconnecter</button>
+              </form>
+            </ul>
+          </li>
         </ul>
-      </li>
-    </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+  <main class="main">
+      @if (session('success'))
+        <x-alert>{{ session('success') }}</x-alert>
+      @endif
+      @if (session('error'))
+        <x-alert type="danger">{{ session('error') }}</x-alert>
+      @endif
+      @if ($errors->any())
+      <x-alert type="danger">
+          @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+          @endforeach
+      </x-alert>
+      @endif
+      @yield('content')
+  </main>  
+
+  <footer id="footer" class="footer light-background">
+
+<div class="container">
+  <div class="row gy-3">
+    <div class="col-lg-3 col-md-6 d-flex">
+      <i class="bi bi-geo-alt icon"></i>
+      <div class="address">
+        <h4>Address</h4>
+        <p>Centre, Yde</p>
+        <p>Republique du Cameroun</p>
+        <p></p>
+      </div>
+
+    </div>
+
+    <div class="col-lg-3 col-md-6 d-flex">
+      <i class="bi bi-telephone icon"></i>
+      <div>
+        <h4>Contact</h4>
+        <p>
+          <strong>Phone:</strong> <span>+237 679 09 18 19</span><br>
+          <strong>Email:</strong> <span>info@example.com</span><br>
+        </p>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 d-flex">
+      <i class="bi bi-clock icon"></i>
+      <div>
+        <h4>Heure d'ouverture</h4>
+        <p>
+          <strong>Lundi-Samedi:</strong> <span>11h - 23h</span><br>
+          <strong>Dimanche</strong>: <span>Fermé</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+      <h4>Nous suivre</h4>
+      <div class="social-links d-flex">
+        <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        <a href="#" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
+      </div>
+    </div>
+
   </div>
-</header>
-<main class="main">
-  <div class="container mt-5">
-    @if (session('success'))
-      <x-alert>{{ session('success') }}</x-alert>
-    @endif
-    @if (session('error'))
-      <x-alert type="danger">{{ session('error') }}</x-alert>
-    @endif
-    @if ($errors->any())
-    <x-alert type="danger">
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </x-alert>
-    @endif
-    @yield('content')
-  </div>  
-</main>  
+</div>
+
+<div class="container copyright text-center mt-4">
+  <p>© <span>Copyright</span> <strong class="px-1 sitename">OMDESIGNWEB</strong> <span>All Rights Reserved</span></p>
+  <div class="credits">
+    Designed by <a href="https://github.com/omd34/">OMD</a>
+  </div>
+</div>
+
+</footer>
+
+<!-- Preloader -->
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+<script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
+<script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+
+<!-- Main JS File -->
+<script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 </html>

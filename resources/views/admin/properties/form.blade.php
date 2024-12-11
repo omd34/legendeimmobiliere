@@ -3,6 +3,35 @@
 @section('title', $property->exists ? 'Editer le bien' : 'Ajouter un bien')
 
 @section('content')
+<!-- Page Title -->
+<div class="page-title" data-aos="fade">
+      <div class="heading">
+        <div class="container">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8">
+              <h1>Tableau de Bord</h1>
+              @if($property->exists)
+               <h2>Modifier un bien immobilier</h2>
+              @else
+               <h2>Ajouter un bien immobilier</h2>
+              @endif 
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="/admin">Home</a></li>
+            @if($property->exists)
+              <li class="current">Modifier un bien</li>
+            @else
+              <li class="current">Ajouter un bien</li>
+            @endif  
+          </ol>
+        </div>
+      </nav>
+    </div><!-- End Page Title -->
     <h4>@yield('title')</h4>
 
     <form class="row" action="{{ route($property->exists ? 'admin.property.update' : 'admin.property.store', $property) }}" method="post" enctype="multipart/form-data">
@@ -28,7 +57,7 @@
           <a href="{{ route('admin.property.index') }}" class="btn btn-secondary m-2">Annuler</a>
         @else
           <button type="submit" class="btn btn-primary m-2">Enregistrer</button>
-          <button type="reset" class="btn btn-secondary m-2">Annuler</button>
+          <button type="reset" class="btn btn-secondary m-2">Vider les champs</button>
         @endif
       </div>
     </form>
