@@ -3,6 +3,36 @@
 @section('title', $option->exists ? 'Editer l\'option' : 'Ajouter une option')
 
 @section('content')
+<!-- Page Title -->
+<div class="page-title" data-aos="fade">
+      <div class="heading">
+        <div class="container">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8">
+              @if($option->exists)
+                <h1>MODIFIER D'UN MOT CLE</h1>
+                <h2>Changer un mot clé déja défini</h2>
+              @else
+                <h1>AJOUT D'UN MOT CLE</h1>
+                <h2>Ajouter un nouveau mot clé</h2>
+              @endif  
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="/admin">Home</a></li>
+            @if($option->exists)
+             <li class="current">Modification Mot clé</li>
+            @else
+             <li class="current">Ajout Mot clé</li>
+            @endif 
+          </ol>
+        </div>
+      </nav>
+    </div><!-- End Page Title -->
     <h4>@yield('title')</h4>
 
     <form class="row" action="{{ route($option->exists ? 'admin.option.update' : 'admin.option.store', $option) }}" method="post" enctype="multipart/form-data">
