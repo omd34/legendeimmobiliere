@@ -3,7 +3,7 @@ name: Deploy to Production
 on:
   push:
     branches:
-      - mastern
+      - master
 
 jobs:
   deploy:
@@ -33,3 +33,5 @@ jobs:
         REMOTE_HOST: "3.135.20.7"
         REMOTE_USER: "ubuntu"
         TARGET: "/var/www/legendeimmobiliere"
+    - name: Restart Apache
+      run: sudo systemctl restart apache2
