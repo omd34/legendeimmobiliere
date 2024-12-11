@@ -38,8 +38,14 @@
       <a href="{{ route('index') }}" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">Legende<span>Immobilier</span></h1>
+        <h1 class="sitename">Legende<span>Immobiliere</span></h1>
       </a>
+      <style>
+                a.logo {
+          text-decoration: none;
+        }
+      </style>  
+
 
       <nav id="navmenu" class="navmenu">
         <ul>
@@ -66,7 +72,7 @@
               <li><a href="#">Dropdown 4</a></li>
             </ul>
           </li>-->
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="{{ route('contact') }}">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -106,21 +112,22 @@
         <div class="col-lg-3 col-md-6 d-flex">
           <i class="bi bi-clock icon"></i>
           <div>
-            <h4>Opening Hours</h4>
+            <h4>Heure d'ouverture</h4>
             <p>
-              <strong>Mon-Sat:</strong> <span>11AM - 23PM</span><br>
-              <strong>Sunday</strong>: <span>Closed</span>
+              <strong>Lundi-Samedi:</strong> <span>11h - 23h</span><br>
+              <strong>Dimanche</strong>: <span>Fermé</span>
             </p>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6">
-          <h4>Follow Us</h4>
+          <h4>Nous suivre</h4>
           <div class="social-links d-flex">
             <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
             <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
             <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            <a href="#" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
           </div>
         </div>
 

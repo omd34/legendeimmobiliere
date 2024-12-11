@@ -42,3 +42,8 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('property', PropertyController::class)->except('show');
     Route::resource('option', OptionController::class)->except('show');
 });
+
+//route page contact
+Route::get('/contact', function(){
+    return view('emails.property.pagecontact');
+})->name('contact');
