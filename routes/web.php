@@ -24,11 +24,11 @@ Route::prefix('/legendeimmobiliere/biens')->controller(ControllersPropertyContro
     $idRegex = '[0-9]+';
     $slugRegex = '[0-9a-z\-]+';
     Route::get('/', 'index')->name('index');
-    Route::get('/legendeimmobiliere/{slug}/{property}', 'show')->name('show')->where([
+    Route::get('/{slug}/{property}', 'show')->name('show')->where([
         'slug' => $slugRegex,
         'property' => $idRegex
     ]);
-    Route::post('/legendeimmobiliere/{property}/contact', 'contact')->name('contact')->where([
+    Route::post('/{property}/contact', 'contact')->name('contact')->where([
         'property' => $idRegex
     ]);
 });
@@ -39,6 +39,6 @@ Route::delete('/legendeimmobiliere/admin/logout', [AuthController::class, 'logou
 
 Route::prefix('/legendeimmobiliere/admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', [AdminHomeController::class, 'index'])->name('index');
-    Route::resource('legendeimmobiliere/property', PropertyController::class)->except('show');
-    Route::resource('legendeimmobiliere/option', OptionController::class)->except('show');
+    Route::resource('property', PropertyController::class)->except('show');
+    Route::resource('option', OptionController::class)->except('show');
 });
