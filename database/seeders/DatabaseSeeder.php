@@ -20,8 +20,9 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         User::factory()->create([
-            'email' => 'admin@admin.com',
-            'password' => Hash::make('admin')
+            'name' => 'omd34',
+            'email' => 'danielotomo34@gmail.com',
+            'password' => Hash::make('007665123')
         ]);
         $options = Option::factory(12)->create();
         Property::factory(50)->hasAttached($options->random(3))->create();

@@ -83,7 +83,7 @@
     </ul>
   </div>
 </header>
-
+<main class="main">
   <div class="container mt-5">
     @if (session('success'))
       <x-alert>{{ session('success') }}</x-alert>
@@ -100,5 +100,6 @@
     @endif
     @yield('content')
   </div>  
+</main>  
 </body>
 </html>
