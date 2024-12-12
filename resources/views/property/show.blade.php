@@ -73,12 +73,12 @@
           <p>{!! nl2br($property->description) !!}</p>
           <div class="testimonial-item">
             <p>
-              <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</span>
+              <span>Commentaire sur la propriété.......</span>
             </p>
             <div>
-              <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-              <h3>Sara Wilsson</h3>
-              <h4>Agent</h4>
+              <img src="assets/img/agent.jpg" class="testimonial-img" alt="">
+              <h3>M.Thierry Pekam</h3>
+              <h4>Agent Immobilier</h4>
             </div>
           </div>
         </div><!-- End Portfolio Description -->
