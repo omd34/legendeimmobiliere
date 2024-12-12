@@ -5,7 +5,7 @@
     @endphp
     <img src="{{ $pic ? $pic->pictureUrl() : asset('assets/img/apartement.jpg') }}" alt="{{ $property->title }} image" class="img-fluid">
     <div class="card-body">
-      <span class="sale-rent">{{ $property->is_for_sale ? 'Sale' : 'Rent' }} | {{ number_format($property->price, 2, '.', ' ') }} DH</span>
+      <span class="sale-rent">{{ $property->is_for_sale ? 'A Vendre' : 'A louer' }} | {{ number_format($property->price, 2, '.', ' ') }} FCFA</span>
       <h3><a href="{{ route('property.show', ['slug'=> $property->getSlug(), 'property'=> $property->id]) }}" class="stretched-link">{{ $property->title }}</a></h3>
       <div class="card-content d-flex flex-column justify-content-center text-center">
         <div class="row propery-info">
@@ -16,8 +16,8 @@
         </div>
         <div class="row">
           <div class="col">{{ $property->surface }} m²</div>
-          <div class="col">{{ $property->bedrooms }}</div>
-          <div class="col">{{ $property->bathrooms }}</div>
+          <div class="col">{{ $property->chambres }}</div>
+          <div class="col">{{ $property->douches }}</div>
           <div class="col">{{ $property->garages }}</div>
         </div>
       </div>
