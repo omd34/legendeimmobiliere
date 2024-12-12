@@ -76,7 +76,7 @@
               <span>Commentaire sur la propriété.......</span>
             </p>
             <div>
-              <img src="assets/img/agent.jpg" class="testimonial-img" alt="">
+              <img src="{{ asset('assets/img/agent.jpg' }}" class="testimonial-img" alt="">
               <h3>M.Thierry Pekam</h3>
               <h4>Agent Immobilier</h4>
             </div>
@@ -93,7 +93,7 @@
           </div><!-- End Tab 1 Content -->
 
           <div class="tab-pane fade" id="real-estate-2-tab2">
-            <img src="assets/img/floor-plan.jpg" alt="" class="img-fluid">
+            <img src="{{ asset('assets/img/floor-plan.jpg') }}" alt="" class="img-fluid">
           </div><!-- End Tab 2 Content -->
 
           <div class="tab-pane fade" id="real-estate-2-tab3">
