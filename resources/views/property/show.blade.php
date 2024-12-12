@@ -76,7 +76,7 @@
               <span>Commentaire sur la propriété.......</span>
             </p>
             <div>
-              <img src="{{ asset('assets/img/agent.jpg' }}" class="testimonial-img" alt="">
+              <img src="{{ asset('assets/img/agent.jpg') }}" class="testimonial-img" alt="">
               <h3>M.Thierry Pekam</h3>
               <h4>Agent Immobilier</h4>
             </div>
