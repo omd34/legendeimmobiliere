@@ -53,6 +53,7 @@
           <li><a @class(['nav-link', 'active' => $routeName->getName() === 'admin.index']) href="{{ route('admin.index') }}">Accueil</a></li>
           <li><a @class(['nav-link', 'active' => $routeName->getName() === 'admin.property.index']) href="{{ route('admin.property.index') }}">Les biens</a></li>
           <li><a @class(['nav-link', 'active' => $routeName->getName() === 'admin.option.index']) href="{{ route('admin.option.index') }}">Les options</a></li>
+        </ul>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
               {{ Illuminate\Support\Facades\Auth::user()->name }}
@@ -65,7 +66,6 @@
               </form>
             </ul>
           </li>
-        </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
