@@ -22,7 +22,7 @@ class Picture extends Model
     }
 
     // Méthode pour retourner l'URL de l'image
-    public function getPictureUrlAttribute()
+    public function pictureUrl()
     {
         return asset('storage/images/properties/' . basename($this->path));
     }
