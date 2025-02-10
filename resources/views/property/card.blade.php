@@ -9,16 +9,16 @@
       <h3><a href="{{ route('property.show', ['slug'=> $property->getSlug(), 'property'=> $property->id]) }}" class="stretched-link">{{ $property->title }}</a></h3>
       <div class="card-content d-flex flex-column justify-content-center text-center">
         <div class="row propery-info">
-          <div class="col">Area</div>
-          <div class="col">Beds</div>
-          <div class="col">Baths</div>
+          <div class="col">Aire</div>
+          <div class="col">chambres</div>
+          <div class="col">douches</div>
           <div class="col">Garages</div>
         </div>
         <div class="row">
           <div class="col">{{ $property->surface }} m²</div>
-          <div class="col">{{ $property->chambres }}</div>
-          <div class="col">{{ $property->douches }}</div>
-          <div class="col">{{ $property->garages }}</div>
+          <div class="col">{{ $property->bedrooms }}</div>
+          <div class="col">{{ $property->baths }}</div>
+          <div class="col">{{ $property->garages ? $property->garages : 0 }}</div>
         </div>
       </div>
     </div>

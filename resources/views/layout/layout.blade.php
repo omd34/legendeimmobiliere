@@ -23,6 +23,11 @@
   <link href="{{ asset('assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@1.15.2/dist/maplibre-gl.css" />
+  <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@1.15.2/dist/maplibre-gl.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/amazon-location@1.0.4/dist/amazon-location.min.js"></script>
+
   <!-- Main CSS File -->
   <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
   <title>@yield('title')</title>

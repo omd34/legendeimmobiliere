@@ -1,5 +1,4 @@
 <?php
-
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -29,6 +28,10 @@ class PropertyFactory extends Factory
             'postal_code' => $this->faker->postcode,
             'price' => $this->faker->numberBetween(100000, 4000000),
             'sold' => false,
+            'property_type' => $this->faker->randomElement(['villa', 'appartement', 'terrain', 'duplex']),
+            'latitude' => $this->faker->latitude(3.8480, 3.8480),
+            'longitude' => $this->faker->longitude(11.5021, 11.5021),
+            'baths' => $this->faker->numberBetween(1, 5), // Ajout du champ baths
         ];
     }
 

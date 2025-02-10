@@ -3,7 +3,6 @@
 @section('title', "$property->title | IZ")
 
 @section('content')
-
 <!-- Page Title -->
 <div class="page-title" data-aos="fade">
   <div class="heading">
@@ -51,9 +50,8 @@
       </script>
       <div class="swiper-wrapper align-items-center">
         @forelse ($property->pictures()->get() as $picture)
-        
         <div class="swiper-slide">
-         <img src="{{ $picture->pictureUrl() }}" alt="{{ $property->title }} image">
+          <img src="{{ $picture->pictureUrl() }}" alt="{{ $property->title }} image">
         </div>
         @empty
         <div class="swiper-slide">
@@ -81,12 +79,20 @@
               <h4>Agent Immobilier</h4>
             </div>
           </div>
+          <!-- Bouton Nous Contacter -->
+          @php
+          $whatsappMessage = urlencode("J'aimerai en savoir plus je suis interessé par la propriété : $property->title");
+          $whatsappImages = $property->pictures->take(1)->pluck('pictureUrl')->implode('%0A');
+          @endphp
+          <div class="mt-3">
+            <a href="https://wa.me/237679091819?text={{ $whatsappMessage }}%0A{{ $whatsappImages }}" class="btn btn-primary" target="_blank">Nous Contacter</a>
+          </div>
         </div><!-- End Portfolio Description -->
         <!-- Tabs -->
         <ul class="nav nav-pills mb-3">
           <li><a class="nav-link active" data-bs-toggle="pill" href="#real-estate-2-tab1">Video</a></li>
-          <li><a class="nav-link" data-bs-toggle="pill" href="#real-estate-2-tab2">Floor Plans</a></li>
-          <li><a class="nav-link" data-bs-toggle="pill" href="#real-estate-2-tab3">Location</a></li>
+          <li><a class="nav-link" data-bs-toggle="pill" href="#real-estate-2-tab2">Plan de la maison</a></li>
+          <li><a class="nav-link" data-bs-toggle="pill" href="#real-estate-2-tab3">Localisation</a></li>
         </ul>
         <div class="tab-content">
           <div class="tab-pane fade show active" id="real-estate-2-tab1">
@@ -95,23 +101,21 @@
           <div class="tab-pane fade" id="real-estate-2-tab2">
             <img src="{{ asset('assets/img/floor-plan.jpg') }}" alt="" class="img-fluid">
           </div><!-- End Tab 2 Content -->
-
           <div class="tab-pane fade" id="real-estate-2-tab3">
-            <iframe style="border:0; width: 100%; height: 400px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <div id="map" style="height: 400px; width: 100%;"></div>
           </div>
         </div>
       </div>
       <div class="col-lg-3" data-aos="fade-up" data-aos-delay="100">
         <div class="portfolio-info">
-          <h3>Quick Summary</h3>
+          <h3>DESCRIPTION</h3>
           <ul>
-            <li><strong>Property ID:</strong> {{ $property->id }}</li>
-            <li><strong>Location:</strong> {{ $property->address }}, {{ $property->city }} ({{ $property->postal_code }})</li>
-            <li><strong>Property Type:</strong> {{ $property->type }}</li>
-            <li><strong>Status:</strong> {{ $property->is_for_sale ? 'Sale' : 'Rent' }}</li>
-            <li><strong>Area:</strong> <span>{{ $property->surface }} m²</span></li>
-            <li><strong>Beds:</strong> {{ $property->bedrooms }}</li>
-            <li><strong>Baths:</strong> {{ $property->bathrooms }}</li>
+            <li><strong>Localisation:</strong> {{ $property->address }}, {{ $property->city }} ({{ $property->postal_code }})</li>
+            <li><strong>Type de la propriete:</strong> {{ $property->property_type }}</li>
+            <li><strong>Statut:</strong> {{ $property->is_for_sale ? 'Vendu' : 'En vente' }}</li>
+            <li><strong>Aire:</strong> <span>{{ $property->surface }} m²</span></li>
+            <li><strong>Nombres de chambres:</strong> {{ $property->bedrooms }}</li>
+            <li><strong>Nombres de salle de bain:</strong> {{ $property->baths }}</li>
           </ul>
         </div>
       </div>
@@ -119,4 +123,25 @@
   </div>
 </section>
 
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@1.15.2/dist/maplibre-gl.js"></script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Initialiser la carte avec Leaflet et OpenStreetMap
+        var map = L.map('map').setView([{{ $property->latitude }}, {{ $property->longitude }}], 15);
+
+        // Utiliser un calque de tuiles satellite
+        L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Ajouter un marqueur à la position de la propriété
+        var marker = L.marker([{{ $property->latitude }}, {{ $property->longitude }}]).addTo(map)
+            .bindPopup(`{{ $property->title }}<br>{{ $property->address }}`)
+            .openPopup();
+    });
+</script>
 @endsection

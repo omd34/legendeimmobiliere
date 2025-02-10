@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PropertyContactRequest;
@@ -8,10 +7,12 @@ use App\Mail\PropertyContactMail;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Aws\LocationService\LocationServiceClient;
+use Illuminate\Support\Facades\Config;
 
 class PropertyController extends Controller
 {
-    public function index (SearchPropertiesRequest $request) {
+    public function index(SearchPropertiesRequest $request) {
         $query = Property::query();
         if ($price = $request->validated('price')) {
             $query = $query->where('price', '<=', $price);
@@ -31,7 +32,7 @@ class PropertyController extends Controller
         ]);
     }
 
-    public function show (string $slug, Property $property) {
+    public function show(string $slug, Property $property) {
         $propertySlug = $property->getSlug();
         if ($slug != $propertySlug) {
             return to_route('property.show', [
@@ -39,14 +40,18 @@ class PropertyController extends Controller
                 'property' => $property
             ]);
         }
+
+        // URL du style de carte prédéfini
+        $styleUrl = 'https://maps.geo.us-east-1.amazonaws.com/maps/v0/maps/Esri_World_Imagery/style-descriptor';
+
         return view('property.show', [
-            'property' => $property
+            'property' => $property,
+            'styleUrl' => $styleUrl,
         ]);
     }
     
-    public function contact (Property $property, PropertyContactRequest $request) {
+    public function contact(Property $property, PropertyContactRequest $request) {
         Mail::send(new PropertyContactMail($property, $request->validated()));
         return back()->with('success', "Votre demande de contact a bien été envoyée");
     }
-
 }

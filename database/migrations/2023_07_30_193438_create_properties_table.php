@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,11 +18,15 @@ return new class extends Migration
             $table->integer('rooms');
             $table->integer('bedrooms');
             $table->integer('floor');
+            $table->integer('baths'); // Ajout du nombre de chambre
             $table->string('address');
             $table->string('postal_code');
             $table->string('city');
             $table->float('price', 12, 2);
             $table->boolean('sold');
+            $table->string('property_type'); // Ajout du type d'immobilier
+            $table->decimal('latitude', 10, 7); // Ajout de la latitude
+            $table->decimal('longitude', 10, 7); // Ajout de la longitude
             $table->timestamps();
         });
     }
