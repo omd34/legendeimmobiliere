@@ -24,6 +24,10 @@ class Property extends Model
         'postal_code',
         'price',
         'sold',
+        'baths',
+        'property_type',
+         'latitude',
+         'longitude'
     ];
 
     public function options () {

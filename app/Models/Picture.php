@@ -11,10 +11,19 @@ class Picture extends Model
     use HasFactory;
 
     protected $fillable = [
-        'path'
+        'path',
+        'property_id' // Assurez-vous que le champ property_id est également rempli
     ];
 
-    public function pictureUrl() { // Retourne le chemin complet de l'image 
+    // Relation avec le modèle Property
+    public function property()
+    {
+        return $this->belongsTo(Property::class);
+    }
+
+    // Méthode pour retourner l'URL de l'image
+    public function getPictureUrlAttribute()
+    {
         return asset('storage/images/properties/' . basename($this->path));
-     }
+    }
 }

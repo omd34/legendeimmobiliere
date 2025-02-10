@@ -34,6 +34,10 @@ class PropertyFormRequest extends FormRequest
             'price' => ['numeric', 'regex:/^[0-9]+(\.[0-9]{0,3})?$/'],
             'sold' => ['required', 'boolean'],
             'options' => ['array', 'exists:options,id'],
+            'baths' => ['required', 'integer', 'min:0'],
+            'property_type' => ['required'],
+            'latitude' => ['required', 'numeric'],
+            'longitude' => ['required', 'numeric'],
         ];
     }
 }

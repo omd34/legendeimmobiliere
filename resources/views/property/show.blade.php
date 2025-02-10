@@ -51,7 +51,7 @@
       <div class="swiper-wrapper align-items-center">
         @forelse ($property->pictures()->get() as $picture)
         <div class="swiper-slide">
-          <img src="{{ $picture->pictureUrl() }}" alt="{{ $property->title }} image">
+          <img src="{{ $picture->pictureUrl }}" alt="{{ $property->title }} image">
         </div>
         @empty
         <div class="swiper-slide">
@@ -81,8 +81,8 @@
           </div>
           <!-- Bouton Nous Contacter -->
           @php
-          $whatsappMessage = urlencode("J'aimerai en savoir plus je suis interessé par la propriété : $property->title");
-          $whatsappImages = $property->pictures->take(1)->pluck('pictureUrl')->implode('%0A');
+          $whatsappMessage = urlencode("J'aimerai en savoir plus je suis intéressé par la propriété : $property->title");
+          $whatsappImages = $property->pictures->take(3)->pluck('path')->map(fn($path) => asset('storage/images/properties/' . basename($path)))->implode('%0A');
           @endphp
           <div class="mt-3">
             <a href="https://wa.me/237679091819?text={{ $whatsappMessage }}%0A{{ $whatsappImages }}" class="btn btn-primary" target="_blank">Nous Contacter</a>
